@@ -1,4 +1,6 @@
-export default interface IDefaultTheme {
+import { DefaultTheme } from "styled-components";
+
+export default interface IDefaultTheme extends DefaultTheme {
     colors: {
         primary: {
             main: string;
