@@ -16,6 +16,11 @@ import { useNavigate } from 'react-router-dom';
 // validation
 import signupSchema from 'validation/signupSchema';
 
+// types
+import IApiResponse from 'types/apiResponse';
+import IUserAuthResponse from 'types/userAuthResponse';
+import { signupApi } from 'api/auth';
+
 const Signup = () => {
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -34,9 +39,17 @@ const Signup = () => {
             username: data.username.value,
             password: data.password.value,
             passwordConfirmation: data.passwordConfirmation.value,
-        }, { abortEarly: false }).then(() => {
-            // TODO: API CALL
-            navigate(PATHS.HOME)
+        }, { abortEarly: false }).then(async () => {
+            const res: IApiResponse<IUserAuthResponse> = await signupApi(data.username.value, data.password.value)
+            if (res.status === 'SUCCESS') {
+                // TODO: store the user in redux
+                navigate(PATHS.HOME)
+            } else {
+                setData(prev => ({
+                    ...prev,
+                    username: { ...prev.username, error: res.error },
+                }))
+            }
         }).catch(err => {
             const tempData = { ...data };
             // @ts-ignore

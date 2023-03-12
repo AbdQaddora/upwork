@@ -12,6 +12,11 @@ import { useNavigate } from 'react-router-dom';
 // validation
 import loginSchema from 'validation/loginSchema';
 import { PATHS } from 'router';
+import { loginApi } from 'api/auth';
+
+// types
+import IApiResponse from 'types/apiResponse';
+import IUserAuthResponse from 'types/userAuthResponse';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -29,9 +34,17 @@ const Login = () => {
         loginSchema.validate({
             username: data.username.value,
             password: data.password.value,
-        }, { abortEarly: false }).then(() => {
-            // TODO: API CALL
-            navigate(PATHS.HOME)
+        }, { abortEarly: false }).then(async () => {
+            const res: IApiResponse<IUserAuthResponse> = await loginApi(data.username.value, data.password.value)
+            if (res.status === 'SUCCESS') {
+                // TODO: store the user in redux
+                navigate(PATHS.HOME)
+            } else {
+                setData(prev => ({
+                    username: { ...prev.username, error: "Wrong username" },
+                    password: { ...prev.password, error: "Wrong password" },
+                }))
+            }
         }).catch(err => {
             const tempData = { ...data };
             // @ts-ignore
