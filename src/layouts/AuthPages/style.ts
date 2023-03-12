@@ -37,6 +37,21 @@ const Style = styled.div`
             width: 45%;
         }
     }
+
+    @media (max-width:${props => props.theme.breakpoints.md}){
+        .auth_form{
+            .card{
+                width: 100%;
+            }
+        }
+    }
+
+    @media (max-width:${props => props.theme.breakpoints.sm}){
+        .auth_form{
+            width: 100%;
+            padding: 0 24px;
+        }
+    }
 `
 
 export default Style;
