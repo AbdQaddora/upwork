@@ -1,17 +1,18 @@
 import React from 'react';
-import GlobalStyle from 'style/GlobalStyle';
-import { defaultTheme } from 'style/Theme';
 
-// providers
+// Theme
 import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './style/GlobalStyle';
+import { defaultTheme } from './style/Theme';
+
+// router
+import Router from './router';
 
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <div className="App">
-        HELLO WORLD
-      </div>
+      <Router />
     </ThemeProvider>
   );
 }
