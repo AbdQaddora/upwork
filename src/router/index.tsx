@@ -2,11 +2,11 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 // pages
-import Home from 'pages/Home';
-import Login from 'pages/Login';
-import Signup from 'pages/Signup';
-import Search from 'pages/Search';
-import Profile from 'pages/Profile';
+import Home from '@pages/Home';
+import Login from '@pages/Login';
+import Signup from '@pages/Signup';
+import Search from '@pages/Search';
+import Profile from '@pages/Profile';
 
 export const PATHS = {
     HOME: '/',

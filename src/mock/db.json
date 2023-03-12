@@ -1,0 +1,25 @@
+{
+    "login": [
+        {
+            "id": "1",
+            "username": "abdQaddora",
+            "password": "Aa123456"
+        }
+    ],
+    "users": [
+        {
+            "id": "1",
+            "location": "Khan Yunis, Palestinian Territories",
+            "job_title": "front-end developer",
+            "hourly_rate": 5,
+            "overview": "software engineering student at Islamic university of Gaza level 4, frontend developer for three years, I worked on several projects as a React.js front-end developer.",
+            "portfolio": [
+                {
+                    "description": "Landing Page For TNA Company",
+                    "project_link": "https://www.youtube.com/",
+                    "image": ""
+                }
+            ]
+        }
+    ]
+}
