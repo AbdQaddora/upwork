@@ -19,6 +19,7 @@ const colors = {
     sky: "#01cdbe",
     black: "#001e00",
     white: "#FFFFFF",
+    danger: "#9b211b",
 }
 
 const typography = {

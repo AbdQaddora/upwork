@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import { PATHS } from '@router';
+import { PATHS } from 'router';
 
 import { Link } from 'react-router-dom';
 
@@ -21,16 +21,16 @@ const LinkSpan = styled.span`
 `;
 
 interface IProps extends React.HTMLAttributes<HTMLSpanElement> {
-    to: keyof typeof PATHS,
-    children: ReactNode
+  to: keyof typeof PATHS,
+  children: ReactNode
 }
 const CustomLink = ({ to, children, ...rest }: IProps) => {
 
-    return <LinkSpan {...rest}>
-        <Link to={to}>
-            {children}
-        </Link>
-    </LinkSpan>
+  return <LinkSpan {...rest}>
+    <Link to={PATHS[to]}>
+      {children}
+    </Link>
+  </LinkSpan>
 }
 
 export default CustomLink;

@@ -1,4 +1,4 @@
-import { Logo, Body1 } from '@components'
+import { Logo, Body1 } from 'components'
 import { ReactNode } from 'react'
 import Style from './style'
 

@@ -20,7 +20,7 @@ const Style = styled.div`
     }
 
     .auth_form{
-        padding-top: 30px;
+        padding: 20px 0;
         width: 80%;
         max-width: 1200px;
         margin: auto;

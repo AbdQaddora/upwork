@@ -20,6 +20,7 @@ export default interface IDefaultTheme extends DefaultTheme {
         sky: string;
         black: string;
         white: string;
+        danger: string;
     };
     typography: {
         h1: string;
