@@ -8,8 +8,8 @@ const filledStyle = css`
     border-color:${props => props.theme.colors.primary.main};
 
     &:hover{
-        background-color: ${props => props.theme.colors.primary.primary300};
-        border-color:${props => props.theme.colors.primary.primary300};
+        background-color: ${props => props.theme.colors.primary.primary200};
+        border-color:${props => props.theme.colors.primary.primary200};
     }
 `
 
@@ -21,15 +21,20 @@ const outlinedStyle = css`
     background-color: transparent;
     
     &:hover{
-        background-color: ${props => props.theme.colors.gray.gray4};
+        background-color: ${props => props.theme.colors.gray.gray6};
     }
 `
-type TSize = "small" | "medium" | "large";
-type TShape = "box" | "rounded_small" | "rounded_large" | "circled";
+// type TSize = "small" | "medium" | "large";
+type TShape = "rounded_small" | "rounded_large" | "circled";
 
+const circledStyled = css`
+    aspect-ratio: 1/1;
+    padding: 10px;
+    border-radius: 50%;
+`
 interface IProps {
     variant?: TVariant
-    size?: TSize
+    // size?: TSize
     fullWidth?: boolean
     shape?: TShape
     margin?: string
@@ -37,10 +42,19 @@ interface IProps {
 
 const Button = styled.button<IProps>`
     outline: none;
-    margin:${props => props.margin ? props.margin : "1rem 0 0"};
-    padding: 0.5rem 1rem ;
+    margin:${props => props.margin ? props.margin : "0.5rem 0"};
+    padding: 0.7rem 1rem ;
+    color: white;
+    font-size: 1rem;
+    font-weight:500;
+    cursor: pointer;
 
     ${props => props.variant === 'outlined' ? outlinedStyle : filledStyle};
+    ${props => props.fullWidth ? "width:100%;" : ""};
+    ${props => props.shape === 'circled' ? circledStyled :
+        props.shape === 'rounded_large' ?
+            "border-radius: 25px;" :
+            "border-radius: 10px;"};
 `
 
 export default Button;

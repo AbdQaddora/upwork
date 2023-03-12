@@ -20,7 +20,7 @@ const Style = styled.div`
     }
 
     .auth_form{
-        padding-top: 30px;
+        padding: 20px 0;
         width: 80%;
         max-width: 1200px;
         margin: auto;
@@ -35,6 +35,21 @@ const Style = styled.div`
             border: ${props => props.theme.border.base};
             border-radius: 16px;
             width: 45%;
+        }
+    }
+
+    @media (max-width:${props => props.theme.breakpoints.md}){
+        .auth_form{
+            .card{
+                width: 100%;
+            }
+        }
+    }
+
+    @media (max-width:${props => props.theme.breakpoints.sm}){
+        .auth_form{
+            width: 100%;
+            padding: 0 24px;
         }
     }
 `
