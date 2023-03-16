@@ -1,5 +1,5 @@
 export default interface IApiResponse<T> {
     status: "SUCCESS" | "FAILED",
-    data: T[],
+    data: T[] | T,
     error: string
 }

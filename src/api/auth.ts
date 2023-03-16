@@ -1,22 +1,25 @@
 import Api from "./axios";
 import IApiResponse from 'types/apiResponse';
-import IUserAuthResponse from 'types/userAuthResponse';
 import { nanoid } from "nanoid";
+import { getRandomUser } from "utils/getRandomUser";
+import IUser from "types/user";
 
 export const loginApi = async (username: string, password: string) => {
-    let result: IApiResponse<IUserAuthResponse>;
+    let result: IApiResponse<IUser | null>;
     try {
         const { data } = await Api.get(`auth?username=${username}&password=${password}`);
         if (data.length > 0) {
+            const { id } = data[0];
+            const userData = await Api.get(`users?id=${id}`);
             result = {
                 status: "SUCCESS",
-                data,
+                data: userData.data[0],
                 error: ""
             }
         } else {
             result = {
                 status: "FAILED",
-                data: [],
+                data: null,
                 error: "wrong user name or password"
             }
         }
@@ -25,7 +28,7 @@ export const loginApi = async (username: string, password: string) => {
         console.log("error")
         result = {
             status: "FAILED",
-            data: [],
+            data: null,
             error: "wrong user name or password"
         }
         return result;
@@ -33,13 +36,13 @@ export const loginApi = async (username: string, password: string) => {
 }
 
 export const signupApi = async (username: string, password: string) => {
-    let result: IApiResponse<IUserAuthResponse>;
+    let result: IApiResponse<IUser | null>;
     try {
         const isExistRes = await Api.get(`auth?username=${username}`);
         if (isExistRes.data.length > 0) {
             result = {
                 status: "FAILED",
-                data: [],
+                data: null,
                 error: "username already taken"
             }
             return result;
@@ -53,15 +56,18 @@ export const signupApi = async (username: string, password: string) => {
         });
 
         if (data) {
+            const user = await getRandomUser(data.id, data.username, data.token);
+            await Api.post("users", user);
+
             result = {
                 status: "SUCCESS",
-                data,
+                data: user,
                 error: ""
             }
         } else {
             result = {
                 status: "FAILED",
-                data: [],
+                data: null,
                 error: "something went wrong"
             }
         }
@@ -70,7 +76,7 @@ export const signupApi = async (username: string, password: string) => {
         console.log(error);
         result = {
             status: "FAILED",
-            data: [],
+            data: null,
             error: "Api error"
         }
         return result;

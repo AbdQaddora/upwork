@@ -1,11 +1,11 @@
 
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PATHS } from 'router';
 
 // components
-import { Button, Input, H1, Divider, InputGroup, CustomLink } from 'components';
+import { Button, H1, Divider, InputGroup, CustomLink } from 'components';
 
 // layout
 import AuthPages from 'layouts/AuthPages';
@@ -16,13 +16,20 @@ import { useNavigate } from 'react-router-dom';
 // validation
 import signupSchema from 'validation/signupSchema';
 
-// types
-import IApiResponse from 'types/apiResponse';
-import IUserAuthResponse from 'types/userAuthResponse';
-import { signupApi } from 'api/auth';
+// redux
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import { signup } from 'redux/features/userSlice';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn);
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate(PATHS.HOME)
+        }
+    }, [isLoggedIn])
+
     const [data, setData] = useState({
         username: { value: "", error: "" },
         password: { value: "", error: "" },
@@ -40,14 +47,11 @@ const Signup = () => {
             password: data.password.value,
             passwordConfirmation: data.passwordConfirmation.value,
         }, { abortEarly: false }).then(async () => {
-            const res: IApiResponse<IUserAuthResponse> = await signupApi(data.username.value, data.password.value)
-            if (res.status === 'SUCCESS') {
-                // TODO: store the user in redux
-                navigate(PATHS.HOME)
-            } else {
+            const isSuccess: boolean = await dispatch(signup(data.username.value, data.password.value));
+            if (!isSuccess) {
                 setData(prev => ({
                     ...prev,
-                    username: { ...prev.username, error: res.error },
+                    username: { ...prev.username, error: "something went wrong" },
                 }))
             }
         }).catch(err => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // components
 import { Button, H1, Divider, InputGroup, CustomLink } from 'components';
@@ -14,12 +14,21 @@ import loginSchema from 'validation/loginSchema';
 import { PATHS } from 'router';
 import { loginApi } from 'api/auth';
 
-// types
-import IApiResponse from 'types/apiResponse';
-import IUserAuthResponse from 'types/userAuthResponse';
+// redux
+import { login } from 'redux/features/userSlice';
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn);
+    
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate(PATHS.HOME)
+        }
+    }, [isLoggedIn])
+
     const [data, setData] = useState({
         username: { value: "", error: "" },
         password: { value: "", error: "" },
@@ -35,16 +44,14 @@ const Login = () => {
             username: data.username.value,
             password: data.password.value,
         }, { abortEarly: false }).then(async () => {
-            const res: IApiResponse<IUserAuthResponse> = await loginApi(data.username.value, data.password.value)
-            if (res.status === 'SUCCESS') {
-                // TODO: store the user in redux
-                navigate(PATHS.HOME)
-            } else {
+            const isSuccess: boolean = await dispatch(login(data.username.value, data.password.value));
+            if (!isSuccess) {
                 setData(prev => ({
                     username: { ...prev.username, error: "Wrong username" },
                     password: { ...prev.password, error: "Wrong password" },
                 }))
             }
+
         }).catch(err => {
             const tempData = { ...data };
             // @ts-ignore

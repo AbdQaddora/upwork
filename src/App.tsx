@@ -7,13 +7,18 @@ import { defaultTheme } from './style/Theme';
 
 // router
 import Router from './router';
+import { Provider } from 'react-redux';
+// redux
+import { store } from './redux/store';
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <GlobalStyle />
-      <Router />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={defaultTheme}>
+        <GlobalStyle />
+        <Router />
+      </ThemeProvider>
+    </Provider>
   );
 }
 

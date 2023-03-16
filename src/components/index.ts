@@ -5,6 +5,11 @@ import Logo from "./Logo";
 import Divider from "./Divider";
 import InputGroup from "./InputGroup";
 import CustomLink from "./CustomLink";
+import Container from "./Container";
+import Modal from "./Modal";
+import SideModal from "./SideModal";
+import EditButton from "./EditButton";
+import ContentWithEdit from "./ContentWithEdit";
 import { H1, H2, H3, H4, Body1, Span } from './Typography';
 
 export {
@@ -20,5 +25,10 @@ export {
     Span,
     Divider,
     InputGroup,
-    CustomLink
+    CustomLink,
+    SideModal,
+    Modal,
+    Container,
+    EditButton,
+    ContentWithEdit
 }

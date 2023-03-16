@@ -1,0 +1,21 @@
+import Button from 'components/Button'
+import { H4 } from 'components/Typography'
+import React from 'react'
+import { MdEdit } from 'react-icons/md'
+import Style from './style'
+interface IProps {
+    onClick: () => void,
+    className?: string
+}
+
+const EditButton = ({ className = "", onClick }: IProps) => {
+    return (
+        <Style className={className}>
+            <Button variant='outlined' shape='circled' onClick={onClick}>
+                <MdEdit className='edit_icon'/>
+            </Button>
+        </Style>
+    )
+}
+
+export default EditButton
