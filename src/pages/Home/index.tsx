@@ -3,20 +3,33 @@ import { Container, H1, SideModal } from 'components'
 import Style from './style'
 import needAuth from 'utils/HOC/needAuth';
 import { useAppDispatch } from 'hooks/redux';
-import { logout } from 'redux/features/userSlice';
+import User from './components/User';
+import Search from './components/Search';
+import JobsTabs from './components/JobsTabs';
+import IJob from 'types/Job';
+import JobDetail from 'components/JobDetail';
 
 const Home = () => {
-    const [jop, setJop] = useState({});
+    const [job, setJop] = useState<IJob | null>(null);
     const [isJopModalOpen, setIsJopModalOpen] = useState(false);
-    const dispatch = useAppDispatch();
+
+    const onJobClick = (jobData: IJob) => {
+        setIsJopModalOpen(true);
+        setJop(jobData)
+    }
+
     return (
         <>
             {isJopModalOpen && <SideModal close={() => setIsJopModalOpen(false)}>
-                <H1>Hello WORLD</H1>
+                <JobDetail job={job as IJob} />
             </SideModal>}
             <Container>
                 <Style>
-                    <button onClick={() => dispatch(logout())}>logout</button>
+                    <div>
+                        <Search />
+                        <JobsTabs onJobClick={onJobClick} />
+                    </div>
+                    <User />
                 </Style>
             </Container>
         </>

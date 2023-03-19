@@ -1,6 +1,5 @@
 import Api from "./axios";
-import IApiResponse from 'types/apiResponse';
-import { nanoid } from "nanoid";
+
 import IUser from "types/user";
 
 const getUserById = async (id: string) => {
@@ -50,6 +49,13 @@ export const addToPortfolio = async (image: string, description: string, id: str
 export const updateSkills = async (skills: string[], id: string) => {
     const user = await getUserById(id);
     user.skills = skills;
+    const { data } = await Api.put(`users/${id}`, user);
+    return data;
+}
+
+export const addToSearchHistoryApi = async (query: string, id: string) => {
+    const user: IUser = await getUserById(id);
+    user.searchHistory = [...user.searchHistory, query];
     const { data } = await Api.put(`users/${id}`, user);
     return data;
 }

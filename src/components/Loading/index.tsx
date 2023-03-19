@@ -2,7 +2,6 @@ import React from 'react'
 import Style from './style'
 
 const Loading = () => {
-    console.log("show")
     return (
         <Style className='loader-page'>
             

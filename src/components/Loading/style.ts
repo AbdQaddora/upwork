@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 const Style = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    min-height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,10 +23,10 @@ const Style = styled.div`
         width: 64px;
         height: 64px;
         margin: 8px;
-        border: 8px solid ${props => props.theme.colors.blue};
+        border: 8px solid ${props => props.theme.colors.primary.main};
         border-radius: 50%;
         animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: ${props => props.theme.colors.blue} transparent transparent transparent;
+        border-color: ${props => props.theme.colors.primary.main} transparent transparent transparent;
     }
 
     .lds-ring div:nth-child(1) {

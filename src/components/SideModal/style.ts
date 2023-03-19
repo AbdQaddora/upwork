@@ -11,7 +11,7 @@ const Style = styled.div`
     }
     
     .closer{
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -20,7 +20,7 @@ const Style = styled.div`
     }
 
     .overlay {
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
