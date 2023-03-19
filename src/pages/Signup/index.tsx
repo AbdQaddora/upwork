@@ -28,7 +28,7 @@ const Signup = () => {
         if (isLoggedIn) {
             navigate(PATHS.HOME)
         }
-    }, [isLoggedIn])
+    }, [isLoggedIn, navigate])
 
     const [data, setData] = useState({
         username: { value: "", error: "" },

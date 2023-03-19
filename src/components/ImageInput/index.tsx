@@ -18,7 +18,7 @@ const ImageInput = ({ onChange, className = "" }: IProps) => {
         };
 
         reader.readAsDataURL(acceptedFiles[0]);
-    }, []);
+    }, [onChange]);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     return (

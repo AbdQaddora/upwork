@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { Container, H1, SideModal } from 'components'
+import { useState } from 'react'
+import { Container, SideModal } from 'components'
 import Style from './style'
 import needAuth from 'utils/HOC/needAuth';
-import { useAppDispatch } from 'hooks/redux';
 import User from './components/User';
 import Search from './components/Search';
 import JobsTabs from './components/JobsTabs';

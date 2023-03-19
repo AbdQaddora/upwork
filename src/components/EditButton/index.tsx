@@ -1,6 +1,4 @@
 import Button from 'components/Button'
-import { H4 } from 'components/Typography'
-import React from 'react'
 import { MdEdit } from 'react-icons/md'
 import Style from './style'
 interface IProps {

@@ -1,5 +1,4 @@
-import { Body1, CustomLink } from 'components'
-import React from 'react'
+import { Body1 } from 'components'
 import Style from './style'
 
 interface IProps {

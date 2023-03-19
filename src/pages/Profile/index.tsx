@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Body1, Container, EditButton, H1, H2, H3, H4, Modal } from 'components';
+import { useState } from 'react';
+import { Container, Modal } from 'components';
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import needAuth from 'utils/HOC/needAuth'
 import Style from './style';
-import Avatar from './sections/Head/Avatar';
-// icons
-import { MdLocationOn } from 'react-icons/md';
+
 import Head from './sections/Head';
 import JobTitle from './sections/JobTitle';
 import Portfolio from './sections/Portfolio';
