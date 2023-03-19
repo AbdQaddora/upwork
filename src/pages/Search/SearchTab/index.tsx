@@ -23,11 +23,11 @@ const SearchTab = ({ onJobClick }: { onJobClick: (job: IJob) => void }) => {
         setJobs(data);
         setResultsCount(resultsCount);
         setIsLoading(false);
-    }, [searchInJobs])
+    }, [])
 
     useEffect(() => {
         getData(search.split("=")[1], page, pageSize);
-    }, [search, page, getData])
+    }, [search, page, getData, pageSize])
 
     useEffect(() => {
         setPage(1)
