@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import Style from './style';
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Body1, EditButton, H4 } from 'components'
+import { Body1, H4 } from 'components'
 import IUser from 'types/user'
 import Style from './style';
 import ContentWithEdit from 'components/ContentWithEdit';

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Body1, H4, Loading } from 'components'
+import { useState, useEffect } from 'react'
+import { H4, Loading } from 'components'
 import { getJobById } from 'api/jobs';
 import Style, { StyleEmpty } from './style';
 import JobCard from 'components/JobCard';

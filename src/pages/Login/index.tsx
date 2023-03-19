@@ -12,7 +12,6 @@ import { useNavigate } from 'react-router-dom';
 // validation
 import loginSchema from 'validation/loginSchema';
 import { PATHS } from 'router';
-import { loginApi } from 'api/auth';
 
 // redux
 import { login } from 'redux/features/userSlice';
@@ -22,12 +21,12 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn);
-    
+
     useEffect(() => {
         if (isLoggedIn) {
             navigate(PATHS.HOME)
         }
-    }, [isLoggedIn])
+    }, [isLoggedIn, navigate])
 
     const [data, setData] = useState({
         username: { value: "", error: "" },
