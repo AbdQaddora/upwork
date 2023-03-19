@@ -9,7 +9,8 @@ export default interface IUser {
     overview: string;
     portfolio: PortfolioItem[];
     skills: string[],
-    recentSearches: string[]
+    searchHistory: string[],
+    savedJobs: string[]
 }
 
 interface PortfolioItem {

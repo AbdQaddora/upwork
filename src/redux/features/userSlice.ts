@@ -3,6 +3,7 @@ import IUser from 'types/user';
 import { AppDispatch } from 'redux/store';
 // api
 import { loginApi, signupApi } from 'api/auth';
+import { addToSearchHistoryApi } from 'api/user';
 
 const LOCAL_STORAGE_KEY = "GSG_TT_8_UP_WORK_CLONE_USER";
 
@@ -24,7 +25,8 @@ const defaultUser = {
     overview: "",
     portfolio: [],
     skills: [],
-    recentSearches: [],
+    searchHistory: [],
+    savedJobs: []
 }
 
 const initialState: IUserSlice = {
@@ -46,6 +48,18 @@ const userSlice = createSlice({
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(action.payload))
             state.user = action.payload;
         },
+        saveJob: (state, action: PayloadAction<string>) => {
+            state.user.savedJobs = [...state.user.savedJobs, action.payload];
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.user))
+        },
+        unSaveJob: (state, action: PayloadAction<string>) => {
+            state.user.savedJobs = state.user.savedJobs.filter(id => id !== action.payload);
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.user))
+        },
+        addToSearchHistoryAction: (state, action: PayloadAction<string>) => {
+            state.user.searchHistory = [...state.user.searchHistory, action.payload];
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.user))
+        },
         resetUser: (state) => {
             state.user = {
                 id: '',
@@ -58,7 +72,8 @@ const userSlice = createSlice({
                 overview: "",
                 portfolio: [],
                 skills: [],
-                recentSearches: [],
+                searchHistory: [],
+                savedJobs: [],
             }
         },
         logout: (state) => {
@@ -74,9 +89,12 @@ export const {
     setIsLoggedIn,
     endFetching,
     startFetching,
+    saveJob,
+    unSaveJob,
     resetUser,
     setUser,
-    logout } = userSlice.actions;
+    logout,
+    addToSearchHistoryAction } = userSlice.actions;
 
 
 export const login = (username: string, password: string) => async (dispatch: AppDispatch) => {
@@ -111,4 +129,13 @@ export const signup = (username: string, password: string) => async (dispatch: A
     }
 }
 
+export const addToSearchHistory = (query: string, id: string) => async (dispatch: AppDispatch) => {
+    try {
+        await addToSearchHistoryApi(query, id);
+        console.log("addToSearchHistoryAVTION RUN NOWWWWWWWWWWWWWWWW")
+        dispatch(addToSearchHistoryAction(query))
+    } catch (error) {
+        console.log(error)
+    }
+}
 export default userSlice.reducer;

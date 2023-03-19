@@ -16,7 +16,8 @@ export const getRandomUser = async (id: string, username: string, token: string)
             description:"landing page",
             image:"https://assets-global.website-files.com/5b5729421aca332c60585f78/63f5fa23da820b87c87958be_61ba503872080311dde1ea56_long-form-landing-page-examples.png"
         }],
-        recentSearches: ["react", "css"],
+        searchHistory: [],
+        savedJobs: [],
         skills: ["react", "js", "css"],
         token
     }

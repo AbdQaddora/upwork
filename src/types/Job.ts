@@ -1,7 +1,7 @@
 export default interface IJob {
     id: string;
     title: string;
-    jopTitle: string;
+    jobTitle: string;
     location: string;
     postTimeStamp: number; // Unix timestamp in seconds
     desc: string;

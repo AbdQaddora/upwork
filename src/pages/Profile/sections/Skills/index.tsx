@@ -1,7 +1,7 @@
 import React from 'react'
 import { ContentWithEdit, H4 } from 'components'
 import Style from './style'
-import SkillItem from './SkillItem'
+import SkillItem from 'components/SkillItem'
 
 interface IProps {
     skills: string[],

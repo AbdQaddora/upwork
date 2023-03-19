@@ -4,7 +4,6 @@ import userReducer from './features/userSlice';
 
 export const store = configureStore({
     reducer: {
-        // jobs: jobsReducer,
         user: userReducer,
     },
 })
